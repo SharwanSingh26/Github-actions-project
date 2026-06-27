@@ -1,0 +1,26 @@
+name: Node.js Live Deployment app
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: execute remote ssh setup on ec2-user docker tasks
+        uses: actions/ssh-action@v4
+        with:
+          host: $${{ secrets.ec2_user }}
+          username: ${{secrets.ec2-username}}
+          key: ${{secrets.ec2_ssh_key}}
+          script: |
+          cd ~/project1
+          git pull origin main
+          npm install --production
+          pm2 restart node-app || pm2 start server.app --name "node-app"
+          
