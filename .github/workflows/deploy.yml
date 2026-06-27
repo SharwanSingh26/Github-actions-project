@@ -19,8 +19,8 @@ jobs:
           username: ${{secrets.ec2-username}}
           key: ${{secrets.ec2_ssh_key}}
           script: |
-          cd ~/Github-actions-project
-          git pull origin main
-          npm install --production
-          pm2 restart node-app || pm2 start server.app --name "node-app"
+            cd ~/Github-actions-project
+            git pull origin main
+            npm install --production
+            pm2 restart node-app || pm2 start server.app --name "node-app"
           
