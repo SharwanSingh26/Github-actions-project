@@ -19,7 +19,7 @@ jobs:
           username: ${{secrets.EC2_USERNAME}}
           key: ${{secrets.EC2_SSH_KEY}}
           script: |
-            cd ~/Github-actions-project
+            cd ~/home/ec2-user/Github-actions-project
             git pull origin main
             npm install --production
             pm2 restart node-app || pm2 start server.app --name "node-app"
