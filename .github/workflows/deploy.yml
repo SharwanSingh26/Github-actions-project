@@ -16,7 +16,7 @@ jobs:
         uses: actions/ssh-action@v4
         with:
           host: $${{ secrets.ec2_user }}
-          username: ${{secrets.ec2-username}}
+          username: ${{secrets.EC2_USERNAME}}
           key: ${{secrets.ec2_ssh_key}}
           script: |
             cd ~/Github-actions-project
